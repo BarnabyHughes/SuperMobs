@@ -2,6 +2,7 @@ package net.twistmc.supermobs.listeners;
 
 import net.twistmc.supermobs.MobType;
 import net.twistmc.supermobs.SuperMobs;
+import net.twistmc.supermobs.utils.Strings;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
@@ -18,13 +19,13 @@ public class SpawnEvent implements Listener {
             if (e.getClickedBlock() == null) return;
             e.setCancelled(true);
 
-            Location loc = e.getClickedBlock().getLocation();
+            Location loc = e.getClickedBlock().getLocation().add(0,1,0);
 
             assert loc.getWorld() != null;
 
 
             Entity entity = loc.getWorld().spawnEntity(loc, type.entityType);
-            entity.setCustomName(type.spawnName);
+            entity.setCustomName(Strings.format(type.spawnName));
 
         }
 
